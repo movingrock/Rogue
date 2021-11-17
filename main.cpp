@@ -1,20 +1,22 @@
-#include "exit.cpp"
-#include "info.cpp"
-#include "input.cpp"
-#include "menu.cpp"
+#include "control.cpp"
+#include <time.h>
 
 int main(void) {
+    control *ctrl = new control("start", "menu_win");
+    time_t start, end;
+    double result;
+    start = time(NULL);
     while (1) {
-        clear;
-        if (window == "menu_w") {
-            menu();
-        } else if (window == "info_w") {
-            info();
-        } else if (window == "exit_w") {
-            exit();
+        ctrl->getKey();
+        if (ctrl->getWindow() == "menu_win") {
+            ctrl->menu();
+        } else if (ctrl->getWindow() == "map_win") {
+            ctrl->map();
+        } else if (ctrl->getWindow() == "info_win") {
+            ctrl->info();
+        } else if (ctrl->getWindow() == "exit_win") {
+            ctrl->exit();
         }
-        getKey();
     }
-
     return 0;
 }
